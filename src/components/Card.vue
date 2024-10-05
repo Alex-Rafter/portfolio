@@ -1,8 +1,5 @@
 <template>
-	<div>
-	  <h1>{{ title }}</h1>
-	  <p>This is a card component</p>
-	</div>
+	<h1>{{ title }}</h1>
   </template>
 
   <script>
