@@ -11,7 +11,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.vue": "eslint"
+    "*.vue": "eslint --fix"
   },
   "dependencies": {
     "@astrojs/vue": "^4.5.1",
