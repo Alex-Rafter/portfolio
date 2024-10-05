@@ -4,7 +4,7 @@
 
   <script>
 
-  var testingEsLint = 'testing';
+  var testingEsLintStr = 'testing';
   export default {
 	name: 'TitleComponent',
 	props: {
