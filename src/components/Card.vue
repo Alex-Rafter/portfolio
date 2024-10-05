@@ -3,6 +3,8 @@
   </template>
 
   <script>
+
+  var testingEsLint = 'testing';
   export default {
 	name: 'TitleComponent',
 	props: {
