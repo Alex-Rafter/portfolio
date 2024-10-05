@@ -11,6 +11,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
+    "*.vue": "standard --fix",
     "*.js": "standard --fix"
   },
   "dependencies": {
