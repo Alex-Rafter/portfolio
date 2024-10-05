@@ -4,10 +4,6 @@
 
   <script>
 
-  var testingEsLintStr = 'testing';
-
-
-
   export default {
 	name: 'TitleComponent',
 	props: {
