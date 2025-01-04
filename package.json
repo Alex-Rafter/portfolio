@@ -16,8 +16,8 @@
     "*.mjs": "eslint --fix"
   },
   "dependencies": {
-    "@astrojs/vue": "^4.5.1",
-    "astro": "^4.15.11",
+    "@astrojs/vue": "^5.0.4",
+    "astro": "^5.1.2",
     "bootstrap": "^5.3.3",
     "vue": "^3.5.11"
   },

@@ -1,0 +1,152 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import testDiagram from '../../assets/img/test-diagram.svg';
+import { Code } from 'astro:components';
+
+const codeExample = `interface TodoItem {
+  id: number;
+  text: string;
+  completed: boolean;
+}
+
+const TodoList: React.FC = () => {
+  const [todos, setTodos] = useState<TodoItem[]>([]);
+  const [newTodo, setNewTodo] = useState("");
+
+  const addTodo = useCallback(() => {
+    if (newTodo.trim()) {
+      setTodos(prev => [...prev, {
+        id: Date.now(),
+        text: newTodo,
+        completed: false
+      }]);
+      setNewTodo("");
+    }
+  }, [newTodo]);
+
+  return (
+    <div className="todo-container">
+      <input
+        type="text"
+        value={newTodo}
+        onChange={(e) => setNewTodo(e.target.value)}
+        placeholder="Add a new todo"
+      />
+      <button onClick={addTodo}>Add Todo</button>
+
+      <ul>
+        {todos.map(todo => (
+          <li key={todo.id}>
+            <input
+              type="checkbox"
+              checked={todo.completed}
+              onChange={() => {
+                setTodos(prev =>
+                  prev.map(t =>
+                    t.id === todo.id
+                      ? { ...t, completed: !t.completed }
+                      : t
+                  )
+                );
+              }}
+            />
+            <span style={{
+              textDecoration: todo.completed ? 'line-through' : 'none'
+            }}>
+              {todo.text}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};`;
+---
+
+<Layout title="Modern Front-End Web Development">
+	<main transition:animate="fade">
+		<div class="container-fluid px-0 overflow-hidden">
+			<div class="previews container py-5">
+			  <div class="row">
+				<div class="col-12 col-lg-8 offset-lg-2">
+					<article>
+						<h1 class="mb-4">The Evolution of Modern Front-End Development</h1>
+
+						<p class="lead">The landscape of front-end web development has transformed dramatically over the past decade, bringing both exciting opportunities and new challenges for developers.</p>
+
+
+						<Image src={testDiagram} alt="Test Diagram" class="w-100 h-auto" />
+
+						<h2 class="mt-5 mb-3">The Rise of Modern Frameworks</h2>
+						<p>Front-end development has come a long way from the days of simple HTML, CSS, and JavaScript. Today's developers have access to powerful frameworks like React, Vue, and Angular, which have revolutionized how we build web applications. These frameworks offer component-based architectures, efficient state management, and improved developer experiences that were unimaginable just a few years ago.</p>
+
+						<div class="code-sample my-4 p-4 bg-light rounded">
+							<p class="mb-3 text-muted">A modern React component using hooks and TypeScript:</p>
+							<Code code={codeExample} lang="tsx" theme="github-dark" />
+						</div>
+
+						<p>The introduction of build tools like Vite, webpack, and modern meta-frameworks such as Next.js, Nuxt, and Astro has further streamlined the development process. These tools provide features like hot module replacement, code splitting, and automatic optimization out of the box, allowing developers to focus more on creating features rather than configuring build processes.</p>
+
+						<h2 class="mt-4 mb-3">Performance and User Experience</h2>
+						<p>With the increasing complexity of web applications, performance has become a crucial consideration. Modern front-end development emphasizes techniques like lazy loading, code splitting, and tree shaking to ensure optimal load times. The Core Web Vitals metrics introduced by Google have put even more focus on delivering excellent user experiences through measurable performance indicators.</p>
+
+						<h2 class="mt-4 mb-3">CSS Evolution</h2>
+						<p>CSS has evolved significantly with features like CSS Grid, Flexbox, and Custom Properties (variables). These modern features have made it easier to create responsive, maintainable layouts while reducing the need for external preprocessors. Additionally, utility-first CSS frameworks like Tailwind CSS have gained popularity by offering a different approach to styling that promotes consistency and rapid development.</p>
+
+						<h2 class="mt-4 mb-3">The Future of Front-End</h2>
+						<p>Looking ahead, we're seeing exciting developments in areas like Web Components, WebAssembly, and Edge Computing. These technologies promise to push the boundaries of what's possible in web development even further. The adoption of TypeScript continues to grow, bringing stronger type safety and improved tooling to JavaScript codebases.</p>
+
+						<p>Progressive Web Apps (PWAs) remain an important trend, offering native-like experiences through web technologies. Features like offline support, push notifications, and app-like interfaces are becoming standard expectations for modern web applications.</p>
+
+						<h2 class="mt-4 mb-3">Conclusion</h2>
+						<p>Front-end development continues to evolve at a rapid pace, with new tools and techniques emerging regularly. While this constant evolution can be challenging to keep up with, it also brings exciting opportunities to create better, faster, and more engaging web experiences. The key to success in modern front-end development lies in finding the right balance between adopting new technologies and maintaining stable, maintainable codebases.</p>
+					</article>
+				</div>
+			  </div>
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<style>
+
+/* article {
+	font-family: var(--bs-font-monospace);
+}
+
+article p {
+	font-family: var(--bs-body-font-family);
+} */
+
+article :is(h2, h3, h4, h5, h6) {
+	font-weight: 400;
+	font-size: 1.75rem;
+}
+
+
+
+.lead {
+	font-size: 1.25rem;
+	font-weight: 300;
+}
+
+article h1 {
+	font-size: 2.5rem;
+	font-weight: 700;
+	text-wrap: balance;
+}
+
+article h2 {
+	font-size: 1.75rem;
+}
+
+article p {
+	line-height: 1.7;
+	margin-bottom: 1.5rem;
+}
+
+.code-sample {
+	font-size: 0.875rem;
+}
+</style>
