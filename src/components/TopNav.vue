@@ -1,5 +1,27 @@
+<script setup>
+import { ref, onMounted } from 'vue';
+const props = defineProps({
+	nav: String,
+  currentLocation: String,
+});
+
+const isDarkNav = props.nav === 'dark';
+const isInfoPage = ref(false);
+const dynamicNavTitle = ref('alex rafter');
+dynamicNavTitle.value = isDarkNav ? 'ar' : 'alex rafter';
+
+onMounted(() => {
+  isInfoPage.value = window.location.pathname === '/info';
+});
+
+
+
+</script>
 <template>
-  <nav class="top-nav px-xl-1">
+  <nav
+    class="top-nav px-xl-1"
+    :class="{ 'bg-dark text-white': isDarkNav }"
+  >
     <a
       class="nav-link logo-type fs-4 fw-normal py-2 mt-1 mb-0"
       href="/"
@@ -30,7 +52,7 @@
       <li>
         <a
           class="nav-link"
-          href="#"
+          :href="isInfoPage ? 'javascript:history.back(1)' : '/info'"
         >
           <span class="btn btn-sm btn-dark">
             <svg
@@ -53,23 +75,22 @@
 </template>
 <style scoped>
 
-
 nav {
-    font-family: "Space Mono", serif;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  font-family: "Space Mono", serif;
 }
 
-.top-nav {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: center;
-    align-items: center;
-}
-.top-nav a.logo-type {
+a.logo-type {
     grid-column: 2;
     display: flex;
-	justify-content: center;
+    justify-content: center;
+    letter-spacing: -0.9px;
 }
-.top-nav ul {
+
+ul {
     grid-column: 3;
     grid-row: 1;
     display: flex;
